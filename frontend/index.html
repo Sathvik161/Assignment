@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Webpage</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        transition: transform 0.3s ease; /* Smooth scaling transition */
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        color: #fff;
+        padding: 1rem;
+        text-align: center;
+        z-index: 1000;
+      }
+
+      .container {
+        margin-top: 60px;
+        display: flex;
+        flex: 1;
+      }
+
+      .menu {
+        width: 20%;
+        background-color: #f4f4f4;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .menu.collapsed {
+        width: 10%;
+      }
+
+      .main-content {
+        width: 60%;
+        padding: 1rem;
+        background-color: #fff;
+      }
+
+      .right-panel {
+        width: 20%;
+        background-color: #f4f4f4;
+        padding: 1rem;
+      }
+
+      .footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1rem;
+      }
+
+      .toggle-menu {
+        margin-bottom: 1rem;
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 0.5rem;
+      }
+
+      /* Media Queries */
+      @media (max-width: 600px) {
+        .menu {
+          width: 100%;
+          padding: 0.5rem;
+        }
+        .main-content,
+        .right-panel {
+          width: 100%;
+          padding: 0.5rem;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .menu {
+          width: 30%;
+        }
+        .main-content {
+          width: 70%;
+        }
+      }
+
+      @media (max-width: 1600px) {
+        body {
+          font-size: 16px;
+        }
+        .menu {
+          width: 20%;
+        }
+        .main-content {
+          width: 60%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">Fixed Navbar</div>
+
+    <div class="container">
+      <div class="menu" id="menu">
+        <button class="toggle-menu" onclick="toggleMenu()">Toggle Menu</button>
+        <p>Menu Item 1</p>
+        <p>Menu Item 2</p>
+        <p>Menu Item 3</p>
+      </div>
+
+      <div class="main-content">
+        <h1>Main Content</h1>
+        <p>This is the main content area.</p>
+      </div>
+
+      <div class="right-panel">
+        <h2>Right Panel</h2>
+        <p>This is the right-side panel.</p>
+      </div>
+    </div>
+
+    <div class="footer">Footer Content</div>
+
+    <script>
+      // JavaScript scaling logic
+      window.addEventListener('resize', adjustPageSize)
+
+      function adjustPageSize() {
+        const width = window.innerWidth
+        const body = document.body
+
+        if (width <= 600) {
+          body.style.transform = 'scale(0.5)'
+        } else if (width <= 700) {
+          body.style.transform = 'scale(0.75)'
+        } else if (width <= 767) {
+          body.style.transform = 'scale(0.8)'
+        } else if (width <= 1600) {
+          body.style.transform = 'scale(0.9)'
+        } else {
+          body.style.transform = 'scale(1)'
+        }
+      }
+
+      // Call once on page load
+      adjustPageSize()
+
+      // Menu toggle logic
+      function toggleMenu() {
+        const menu = document.getElementById('menu')
+        menu.classList.toggle('collapsed')
+      }
+    </script>
+  </body>
+</html>
